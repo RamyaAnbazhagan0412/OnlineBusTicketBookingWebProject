@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserLogin</title>
+
+
+</head>
+
+<body>
+    <center> 
+          <h1> WELCOME TO BUS TICKET BOOKING APP </h1>
+    <h3>USER LOGIN </h3>
+    <form onsubmit="adminDetails()">
+        <div>
+
+            <label for ="email" id="label">EmailId:</label>
+            <input type="email" name="email" id="email" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter emailId " required autofocus>
+        </div>
+        <div>
+            <label for ="password" id="label"> Password:</label>
+            <input type ="text" name="password" id="password" style="background-color:black; color:antiquewhite
+  "
+            placeholder="Enter password" required >
+         </div>
+         <button type="submit" id="submit" style="background-color:darkviolet;" >submit</button>
+
+    </form>
+</center>
+
+</body>
+
+</html>
+<script>
+function adminDetails(){
+	event.preventDefault();
+    let email=document.querySelector("#email").value;
+    let password=document.querySelector("#password").value;
+    console.log("email:",email);
+    console.log("password:",password);
+    //let adminObj={adminEmail:email,adminPassword:password};
+    const url="http://localhost:8080/WebApplicationProject/UserLogin?email="+email+"&password="+password;
+    fetch(url).then(res=>res.text()).then(res=>{
+    	let message= res;
+    	if(message=="success"){
+    		alert("Login successfull");
+    	}
+    	else{
+    		alert (message);
+    	}
+    });
+    }
+
+    // let arr=[];
+    //let JSONObj=localStorage.getItem("admin details");
+    //let  arr=JSONObj!=null?JSON.parse(JSONObj):[];
+    //arr.push(adminObj);
+    //localStorage.setItem("admin details",JSON.stringify(arr));  
+
+
+    </script>
+    <style>
+    div
+{
+  padding :10px;
+}
+body{
+    background-image: url('img.jpg');
+    background-size: cover;
+}
+#label{
+  font-size: 20px;
+  color:black
+
+}
+#label{
+  font-size: 20px;
+  color:black
+
+}
+#submit{
+  font-size: 20px;
+  color:black
+}
+
+</style>
+
+    

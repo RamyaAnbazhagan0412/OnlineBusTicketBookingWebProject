@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    
+    <style>
+        div{
+            padding: 10px;
+        }
+        body{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body >
+    <center>
+    <h1>User  Registration Form</h1>
+    <form onsubmit="UserDetails()">
+        <div>
+
+            <label for ="name" id="label">Name:</label>
+            <input type="name" name="name" id="name" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter Name " required autofocus>
+        </div>
+       
+        <div>
+
+            <label for ="email" id="label">EmailId:</label>
+            <input type="email" name="email" id="email" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter EmailId " required >
+        </div>
+        <div>
+            <label for ="password" id="label"> Password:</label>
+            <input type ="password" name="password" id="password" style="background-color:black; color:antiquewhite
+  "
+            placeholder="Enter password" required >
+         </div>
+         <div>
+
+            <label for ="phoneNumber" id="label">Phone Number:</label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter phone number " required >
+        </div>
+       
+         <button type="submit" id="submit" style="background-color:darkviolet;" >Submit</button>
+         <script>
+             function UserDetails(){
+	event.preventDefault();
+    let name=document.querySelector("#name").value;
+    let email=document.querySelector("#email").value;
+    let password=document.querySelector("#password").value;
+    let phoneNumber=document.querySelector("#phoneNumber").value;
+    	
+    
+    console.log("name:",name);
+    console.log("email:",email);
+    console.log("password:",password);
+    console.log("phoneNumber:",phoneNumber);
+    
+    //let adminObj={adminEmail:email,adminPassword:password};
+    const url="http://localhost:8080/WebApplicationProject/UserRegisterServlet?&name="+name+"&email="+email+"&password="+password+"&phoneNumber="+phoneNumber;
+    fetch(url).then(res=>res.text()).then(res=>{
+    	if(res=1){
+    		alert("Registration successfull");
+    		
+    	}
+    	else {
+    		alert("Try Again");
+    	}
+    });
+    
+             }    
+         </script>
+
+    </form>
+</center>
+</body>
+</html>
