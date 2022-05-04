@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisplayParticularDetails</title>
+</head>
+<body>
+    <h1 ></h1>
+    <table border="1">
+        <thead>
+            <tr>
+            <th>BusDetails</th>
+        </tr>
+        <!-- <tr>
+        <th scope="col" >S.No</th>
+        <th scope="col">Bus Name</th>
+        <th scope="col">Bus From</th>
+        <th scope="col">Bus To</th>
+        <th scope="col">Bus Timing</th>
+        <th scope="col" >Tickets Available</th>
+        <th scope="col">Ticket Price</th> -->
+    <!-- </tr> -->
+    </thead>
+    
+    <tbody id="busId">
+
+            <!-- <tr>
+                <td id="busId" ></td>
+                <td id="busName"></td>
+                <td id="busFrom"></td>
+                <td id="busTiming"></td>
+                <td id="busTicketsAvailable"></td>
+                <td id="busTicketPrice"></td>
+            </tr> -->
+    </tbody>
+    </table> <br>
+<div style="font-size: 25px ;">
+    <span>Name :</span>  
+    <span id="name"></span>
+</div>
+<br>
+<div style="font-size: 25px ;">
+    <span>Bus from :</span>  
+    <span id="From"></span>
+</div> 
+<br>
+<div style="font-size: 25px ;">
+    <span>Bus to:</span>  
+    <span id="To"></span>
+</div>
+<br> 
+<div style="font-size: 25px ;">
+    <span>Bus timing:</span>  
+    <span id="Timing"></span>
+</div>
+<br> 
+<div style="font-size: 25px ;">
+    <span>Bus Tickets Available :</span>  
+    <span id="TicketsAvailable"></span>
+</div> 
+<br>
+<div style="font-size: 25px ;">
+    <span>Bus Ticket Price:</span>  
+    <span id="TicketPrice"></span>
+</div>
+</body>
+<script>
+    function particularBusDetails(id){
+        let content = `<tr><th scope="col" >S.No</th><th scope="col">Bus Name</th><th scope="col">Bus From</th><th scope="col">Bus To</th><th scope="col">Bus Timing</th><th scope="col" >Tickets Available</th><th scope="col">Ticket Price</th> </tr> ` ;
+  const url="http://localhost:8080/WebApplicationProject/DisplayParticularBusServlet?busId="+id;
+  fetch(url).then(res=> res.json()).then(res=> {
+         // console.log(res);
+          let displayBus = res;
+            content +=`<tr>
+                <td id="busId" >${displayBus.busId}</td>
+                <td id="busName">${displayBus.busName}</td>
+                <td id="busFrom">${displayBus.busFrom}</td>
+                <td id="busTo">${displayBus.busTo}</td>
+                <td id="busTiming">${displayBus.busTiming}</td>
+                <td id="busTicketsAvailable">${displayBus.busTicketsAvailable}</td>
+                <td id="busTicketPrice">${displayBus.busTicketPrice}</td>
+            </tr>`; 
+          
+           document.querySelector("#busId").innerHTML=content;
+          
+           document.querySelector("#name").innerHTML=displayBus.busName;
+           document.querySelector("#From").innerHTML=displayBus.busFrom;
+           document.querySelector("#To").innerHTML=displayBus.busTo;
+           document.querySelector("#Timing").innerHTML=displayBus.busTiming;
+           document.querySelector("#TicketsAvailable").innerHTML=displayBus.busTicketsAvailable;
+           document.querySelector("#TicketPrice").innerHTML=displayBus.busTicketPrice;
+
+           
+        //   document.querySelector("#busName").innerHTML=displayBus.busName;
+        //   document.querySelector("#busFrom").innerHTML=displayBus.busFrom;
+        //   document.querySelector("#busTo").innerHTML=displayBus.busTo;
+        //   document.querySelector("#busTicketsAvailable").innerHTML=displayBus.busTicketsAvailable;
+        //   document.querySelector("#busTicketPrice").innerHTML=displayBus.busTicketPrice;
+          });
+      
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        let id = params.get("busId");
+        console.log(id);
+        particularBusDetails(id);
+  </script>
+</html>

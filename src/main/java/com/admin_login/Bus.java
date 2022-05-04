@@ -1,7 +1,7 @@
 package com.admin_login;
 
 
-	public class DisplayBusModel {
+	public class Bus {
 		private int   busId;
 		private String busName;
 		private String busFrom;

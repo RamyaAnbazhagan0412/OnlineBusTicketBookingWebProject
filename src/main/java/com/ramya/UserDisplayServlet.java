@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.admin_login.DisplayBusDAO;
-import com.admin_login.DisplayBusModel;
+import com.admin_login.Bus;
 import com.admin_login.UserDisplayDAO;
 import com.admin_login.UserRegistrationModel;
 import com.google.gson.Gson;

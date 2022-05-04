@@ -38,7 +38,8 @@ public class UserRegisterServlet extends HttpServlet {
 		try {
 			int a=UserRegistrationDAO.userRegistrationDAO(userObj);
 			out.println(a);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			out.println(e.getMessage());
 			
 		}

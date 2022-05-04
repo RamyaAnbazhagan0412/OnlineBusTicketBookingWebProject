@@ -11,9 +11,9 @@ public class ConnectionUtil {
 		public static Connection getConnection() throws ClassNotFoundException {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url="jdbc:mysql://101.53.133.59:3306/revature_training_db";
-			String userName="rev_user";
-			String password="rev_user";
+			String url="jdbc:mysql://training-db.ck1ayq0lncmp.ap-south-1.rds.amazonaws.com:3306/ramya_anbazhagan_db";
+			String userName="ramya";
+			String password="anbazhagan_ramya";
 			Connection connection=null;
 			try {
 				connection=DriverManager.getConnection(url,userName,password);

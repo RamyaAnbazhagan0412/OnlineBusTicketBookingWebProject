@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert bus form</title>
+    
+    <style>
+        div{
+            padding: 10px;
+        }
+        body{
+            
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body ><center>
+   
+    <h1>Bus Insertion Form</h1>
+    <form onsubmit="BusDetails()">
+        <div>
+
+            <label for ="busName" id="label">Bus Name:</label>
+            <input type="name" name="busName" id="busName" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter Bus  Name " required autofocus>
+        </div>
+       
+        <div>
+
+            <label for ="busFrom" id="label">Bus From:</label>
+            <input type="name" name="busFrom" id="busFrom" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter Bus from " required >
+        </div>
+        <div>
+            <label for ="busTo" id="label"> Bus To:</label>
+            <input type ="name" name="name" id="busTo" style="background-color:black; color:antiquewhite
+  "e
+            placeholder="Enter To location" required >
+         </div>
+         <div>
+
+            <label for ="busTiming" id="label">Bus Timing:</label>
+            <input type="name" name="name" id="busTiming" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter Bus Timing" required >
+        </div>
+        <div>
+
+            <label for ="busTicketsAvailable" id="label">Bus Seats:</label>
+            <input type="number" name="busTicketsAvailable" id="busTicketsAvailable" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter Bus seats " required >
+        </div>
+       
+        <div>
+
+            <label for ="busTicketPrice" id="label">Ticket Price:</label>
+            <input type="number" name="busTicketPrice" id="busTicketPrice" style="background-color:black; color:antiquewhite"
+            placeholder ="Enter Bus Ticket price " required >
+        </div>
+       
+       
+         <button type="submit" id="submit" style="background-color:darkviolet;" >Submit</button>
+      </form>
+
+         <script>
+             function BusDetails(){
+	event.preventDefault();
+    let name=document.querySelector("#busName").value;
+    let from=document.querySelector("#busFrom").value;
+    let to=document.querySelector("#busTo").value;
+    let timing=document.querySelector("#busTiming").value;
+    let ticketsAvailable=document.querySelector("#busTicketsAvailable").value;
+    let ticketPrice=document.querySelector("#busTicketPrice").value;
+    	
+    let value=0;
+    console.log("name:",name);
+    console.log("from:",from);
+    console.log("to:",to);
+    console.log("timing:",timing);
+    console.log("ticketsAvailable:",ticketsAvailable);
+    console.log("ticketPrice:",ticketPrice);
+
+
+//   try{ 
+//     if(name==null||name.trim()==""){
+//  	   throw new Error("Enter valid Name");
+//     }
+//     if(password.length<8){
+//  	   throw new Error("Password must be atleast 8 characters ");
+ 	   
+//     }
+//     if(phoneNumber.length!=10)
+//  	   {
+//  	   throw new Error("Enter a valid Phone Number ");
+//  	   }
+//     value=1;
+//     }
+//   catch(err){
+// 	  alert(err.message);
+// 	  value=0;
+//   }
+//   if(value==1){
+	    const url="http://localhost:8080/WebApplicationProject/InsertServlet?&busName="+name+"&busFrom="+from+"&busTo="+to+"&busTiming="+timing+"&busTicketsAvailable="+ticketsAvailable+"&busTicketPrice="+ticketPrice;
+	    fetch(url).then(res=>res.json()).then(res=>{
+
+	    	if(res==1){
+	    		alert("bus inserted successfull");
+	  
+	    		
+	    	}
+	    	else {
+	    		//alert("Try Again");
+	    		alert("insertion unsuccessful");
+	    	}
+	    });
+	   }
+	   
+    //         }
+      </script>
+</center>
+</body>
+</html>

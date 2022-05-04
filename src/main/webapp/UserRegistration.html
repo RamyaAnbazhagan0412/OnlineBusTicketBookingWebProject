@@ -16,7 +16,7 @@
     </style>
 </head>
 <body >
-    <center>
+   
     <h1>User  Registration Form</h1>
     <form onsubmit="UserDetails()">
         <div>
@@ -46,6 +46,8 @@
         </div>
        
          <button type="submit" id="submit" style="background-color:darkviolet;" >Submit</button>
+      </form>
+
          <script>
              function UserDetails(){
 	event.preventDefault();
@@ -54,28 +56,47 @@
     let password=document.querySelector("#password").value;
     let phoneNumber=document.querySelector("#phoneNumber").value;
     	
-    
+    let value=0;
     console.log("name:",name);
     console.log("email:",email);
     console.log("password:",password);
     console.log("phoneNumber:",phoneNumber);
-    
-    //let adminObj={adminEmail:email,adminPassword:password};
-    const url="http://localhost:8080/WebApplicationProject/UserRegisterServlet?&name="+name+"&email="+email+"&password="+password+"&phoneNumber="+phoneNumber;
-    fetch(url).then(res=>res.text()).then(res=>{
-    	if(res=1){
-    		alert("Registration successfull");
-    		
-    	}
-    	else {
-    		alert("Try Again");
-    	}
-    });
-    
-             }    
-         </script>
 
-    </form>
-</center>
+  try{ 
+    if(name==null||name.trim()==""){
+ 	   throw new Error("Enter valid Name");
+    }
+    if(password.length<8){
+ 	   throw new Error("Password must be atleast 8 characters ");
+ 	   
+    }
+    if(phoneNumber.length!=10)
+ 	   {
+ 	   throw new Error("Enter a valid Phone Number ");
+ 	   }
+    value=1;
+    }
+  catch(err){
+	  alert(err.message);
+	  value=0;
+  }
+  if(value==1){
+	    const url="http://localhost:8080/WebApplicationProject/UserRegisterServlet?&name="+name+"&email="+email+"&password="+password+"&phoneNumber="+phoneNumber;
+	    fetch(url).then(res=>res.text()).then(res=>{
+	    	if(res=1){
+	    		alert("Registration successfull");
+	  
+	    		
+	    	}
+	    	else {
+	    		//alert("Try Again");
+	    		alert("Your already a Registered user");
+	    	}
+	    });
+	   }
+	   
+             }
+      </script>
+
 </body>
 </html>

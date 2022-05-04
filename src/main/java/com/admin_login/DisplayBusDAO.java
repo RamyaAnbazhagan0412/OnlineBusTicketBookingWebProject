@@ -10,10 +10,10 @@ import java.util.List;
 
 
 public class DisplayBusDAO {
-	public static List<DisplayBusModel>displayBusDAO(DisplayBusDAO displayObj)throws SQLException, ClassNotFoundException
+	public static List<Bus>displayBusDAO(DisplayBusDAO displayObj)throws SQLException, ClassNotFoundException
 	{
 		//1. create list 
-		List<DisplayBusModel> displayBus=new ArrayList<DisplayBusModel>();
+		List<Bus> displayBus=new ArrayList<Bus>();
 
 		// 2.get connection
 		Connection connection=null;
@@ -21,7 +21,7 @@ public class DisplayBusDAO {
 		connection=ConnectionUtil.getConnection();
 		
 		//3.select  query
-		String query="SELECT bus_id,bus_name,bus_from ,bus_to ,bus_date, bus_timing, bus_tickets,bus_ticket_price FROM bus_ticket_booking_app_display";
+		String query="SELECT bus_id,bus_name,bus_from ,bus_to, bus_timing, bus_tickets,bus_ticket_price FROM bus_ticket_booking_app_display";
 		statement=connection.prepareStatement(query); 
 		 
 		     //4.using executeQuery() passing query
@@ -34,18 +34,16 @@ public class DisplayBusDAO {
 				String busName=rs.getString("bus_name");
 				String busFrom=rs.getString("bus_from");
 				String busTo=rs.getString("bus_to");
-				String busDate=rs.getString("bus_date");
 				String busTiming=rs.getString("bus_timing");
 				int busTickets=rs.getInt("bus_tickets");
 				int busTicketPrice=rs.getInt("bus_ticket_Price");
 				
-				DisplayBusModel obj=new DisplayBusModel();
+				Bus obj=new Bus();
 				
 				obj.setBusId(id);
 				obj.setBusName(busName);
 				obj.setBusFrom(busFrom);
 				obj.setBusTo(busTo);
-				obj.setBusDate(busDate);
 				obj.setBusTiming(busTiming);
 				obj.setBusTicketsAvailable(busTickets);
 				obj.setBusTicketPrice(busTicketPrice);

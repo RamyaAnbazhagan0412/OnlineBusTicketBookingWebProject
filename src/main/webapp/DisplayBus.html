@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +18,11 @@
         <th scope="col">Bus Name</th>
         <th scope="col">Bus From</th>
         <th scope="col">Bus To</th>
-        <th scope="col">Date</th>
         <th scope="col">Timing</th>
         <th scope="col" >Tickets Available</th>
         <th scope="col">Ticket Price</th>
+        <th scope="col">To delete</th>
+        <th scope="col">To update</th>
  
         
         
@@ -32,7 +34,9 @@
     </tbody>
   </table>
      
-        
+       <div>
+       <button type="button" onclick=" "><a href="InsertBus.html">InsertBus</a></button>
+       </div> 
    
   
   <script>
@@ -43,11 +47,33 @@
           let content="";
           for(let dBus of displayBus){
       
-              content=content+`<tr><th scope="row">${dBus.busId}</th><td>${dBus.busName}</td><td>${dBus.busFrom}</td><td>${dBus.busTo}</td><td>${dBus.busDate}</td><td>${dBus.busTiming}</td><td>${dBus.busTicketsAvailable}</td><td>${dBus.busTicketPrice}</td></tr>`;
+              content=content+`<tr><th scope="row">${dBus.busId}</th>
+              <td><a href="DisplayParticularBus.html?busId=${dBus.busId}">${dBus.busName}</a></td>
+              <td>${dBus.busFrom}</td>
+              <td>${dBus.busTo}</td>
+              <td>${dBus.busTiming}</td>
+              <td>${dBus.busTicketsAvailable}</td>
+              <td>${dBus.busTicketPrice}</td>
+              <td><button type="button" onclick="remove(${dBus.busId})" >Delete</button></td>
+              <td><button type="button" onclick=" "><a href="UpdateBusDetails.html?busId=${dBus.busId}">Update</a></button></td></tr>`;
           }
           document.querySelector("#displayId").innerHTML=content;
           });
-  </script>
+         
+
+
+
+
+function remove(id){
+  
+  const url="http://localhost:8080/WebApplicationProject/DeleteBusServlet?busId="+id;
+  fetch(url).then(res=> res.json()).then(res=> {
+        alert("successfully deleted");
+        window.location.reload();
+          });
+        }
+ 
+    </script>
 
 </body>
 </html>

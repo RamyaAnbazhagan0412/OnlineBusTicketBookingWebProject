@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.admin_login.DisplayBusDAO;
+import com.admin_login.DisplayBusDetailsDAO;
 import com.admin_login.Bus;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class DisplayBusServlet
+ * Servlet implementation class DisplayParticularBusServlet
  */
-@WebServlet("/DisplayBusServlet")
-public class DisplayBusServlet extends HttpServlet {
+@WebServlet("/DisplayParticularBusServlet")
+public class DisplayParticularBusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DisplayBusServlet() {
+    public DisplayParticularBusServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,11 +34,14 @@ public class DisplayBusServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
 		
-		DisplayBusDAO displayBus=new DisplayBusDAO();
+PrintWriter out = response.getWriter();
+	String busId=request.getParameter("busId");
+	int id=Integer.parseInt(busId);
+Bus displayBus=new Bus();
+displayBus.setBusId(id);
 				try {
-					List<Bus> displayObj=DisplayBusDAO.displayBusDAO(displayBus);
+					Bus displayObj=DisplayBusDetailsDAO.displayBusDetailsDAO(displayBus);
 					Gson gson= new Gson();
 					String json=gson.toJson(displayObj);
 					out.println(json);
@@ -54,6 +57,12 @@ public class DisplayBusServlet extends HttpServlet {
 				}
 				out.flush();
 	//	response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
